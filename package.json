@@ -1,0 +1,21 @@
+{
+  "name": "HuVis",
+  "version": "0.1.0",
+  "description": "Service for the HuVis environment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dominicbosch/HuVis.git"
+  },
+  "author": "Dominic Bosch",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.4",
+    "pg": "^4.3.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.1.1"
+  }
+}

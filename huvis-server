@@ -1,0 +1,42 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:			huvis-server
+# Required-Start:	
+# Required-Stop:	 
+# Default-Start:	2 3 4 5
+# Default-Stop:		0 1 6
+# Short-Description: huvis-server serves Huvis Web components
+# Description:		huvis-server provides means to manage an online 3D environment for virtual reality
+### END INIT INFO
+
+# Description:	  huvis-server provides means to manage an online 3D environment for virtual reality
+# Author: Dominic Bosch <dominic.bosch.db@gmail.com>
+NAME=index.js
+DAEMON_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+# DAEMON_PATH=/usr/local/cloned-huvis.git
+export PATH=$PATH:/usr/local/bin
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules:$DAEMON_PATH/node_modules
+
+case "$1" in
+	start)
+		echo -n "Starting huvis-server: "
+		mkdir -p /var/run/forever/
+		exec forever start -p /var/run/forever $DAEMON_PATH/$NAME
+		echo "Done!"
+		;;
+	stop)
+		echo -n "Stopping huvis-server: "
+		exec forever stop $DAEMON_PATH/$NAME
+		echo "Done!"
+		;;
+	restart)
+		echo "Restarting huvis-server: "
+		exec forever restart $DAEMON_PATH/$NAME
+		echo "Done!"
+		;;
+	*)
+		echo "Usage: /etc/init.d/huvis-server {start|stop|restart}"
+		exit 1
+		;;
+esac
+exit 0
